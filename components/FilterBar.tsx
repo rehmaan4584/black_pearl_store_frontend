@@ -43,43 +43,43 @@ export function FilterBar() {
   };
 
   return (
-    <div className="flex gap-4 mb-8 flex-wrap items-center">
+    <div className="flex gap-6 mb-12 flex-wrap items-end bg-white/2 p-6 rounded-3xl border border-white/5 glass">
       {/* Gender Filter */}
-      <div>
-        <label className="text-sm font-medium mb-2 block">Gender</label>
+      <div className="space-y-2">
+        <label className="text-xs font-bold uppercase tracking-wider text-teal-100/60 ml-1">Gender</label>
         <Select value={currentGender || 'all'} onValueChange={handleGenderChange}>
-          <SelectTrigger className="w-45">
+          <SelectTrigger className="w-[180px] h-12 glass border-white/10 hover:border-primary/50 transition-colors uppercase tracking-widest text-xs font-bold">
             <SelectValue placeholder="All Genders" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Genders</SelectItem>
-            <SelectItem value="MEN">Men</SelectItem>
-            <SelectItem value="WOMEN">Women</SelectItem>
-            <SelectItem value="UNISEX">Unisex</SelectItem>
+          <SelectContent position="popper" sideOffset={8} className="glass-darker border-white/10 min-w-[180px]">
+            <SelectItem value="all" className="uppercase tracking-widest text-xs py-3">All Genders</SelectItem>
+            <SelectItem value="MEN" className="uppercase tracking-widest text-xs py-3">Men</SelectItem>
+            <SelectItem value="WOMEN" className="uppercase tracking-widest text-xs py-3">Women</SelectItem>
+            <SelectItem value="UNISEX" className="uppercase tracking-widest text-xs py-3">Unisex</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Type Filter */}
-      <div>
-        <label className="text-sm font-medium mb-2 block">Category</label>
+      <div className="space-y-2">
+        <label className="text-xs font-bold uppercase tracking-wider text-teal-100/60 ml-1">Category</label>
         <Select value={currentType || 'all'} onValueChange={handleTypeChange}>
-          <SelectTrigger className="w-45">
+          <SelectTrigger className="w-[180px] h-12 glass border-white/10 hover:border-primary/50 transition-colors uppercase tracking-widest text-xs font-bold">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Categories</SelectItem>
-            <SelectItem value="JEANS">Jeans</SelectItem>
-            <SelectItem value="SHORTS">Shorts</SelectItem>
-            <SelectItem value="SHIRTS">Shirts</SelectItem>
-            <SelectItem value="KNICKERS">Knickers</SelectItem>
+          <SelectContent position="popper" sideOffset={8} className="glass-darker border-white/10 min-w-[180px]">
+            <SelectItem value="all" className="uppercase tracking-widest text-xs py-3">All Categories</SelectItem>
+            <SelectItem value="JEANS" className="uppercase tracking-widest text-xs py-3">Jeans</SelectItem>
+            <SelectItem value="SHORTS" className="uppercase tracking-widest text-xs py-3">Shorts</SelectItem>
+            <SelectItem value="SHIRTS" className="uppercase tracking-widest text-xs py-3">Shirts</SelectItem>
+            <SelectItem value="KNICKERS" className="uppercase tracking-widest text-xs py-3">Knickers</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Clear Filters */}
       {(currentGender || currentType) && (
-        <Button variant="outline" onClick={clearFilters} className="mt-6">
+        <Button variant="ghost" onClick={clearFilters} className="h-12 px-6 text-destructive hover:bg-destructive/10 font-bold uppercase tracking-widest text-xs">
           Clear Filters
         </Button>
       )}

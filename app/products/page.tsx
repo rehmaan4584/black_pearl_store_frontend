@@ -38,7 +38,7 @@ export default async function ProductsPage({
       <FilterBar />
       
       {/* Products Count */}
-      <p className="text-gray-600 mb-6">
+      <p className="text-teal-100/60 mb-6 font-medium">
         Showing {filteredProducts.length} products
       </p>
       

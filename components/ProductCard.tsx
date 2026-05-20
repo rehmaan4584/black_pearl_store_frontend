@@ -13,36 +13,41 @@ export function ProductCard({ product }: { product: Product }) {
   const minPrice = Math.min(...product.variants.map(v => v.price));
 
   return (
-    <Link href={`/products/${product.id}`}>
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-        <div className="relative h-64 w-full">
+    <Link href={`/products/${product.id}`} className="group h-full">
+      <Card className="glass border-white/5 overflow-hidden transition-all duration-300 hover:scale-[1.02] cyan-glow-hover h-full flex flex-col">
+        <div className="relative h-72 w-full shrink-0 overflow-hidden">
           <Image
             src={primaryImage?.url || '/placeholder.png'}
             alt={product.title}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <Badge className="absolute top-2 right-2">
+          <Badge className="absolute top-3 right-3 glass border-white/10 uppercase tracking-widest text-[10px] font-bold">
             {product.gender}
           </Badge>
         </div>
         
-        <CardContent className="p-4">
-          <h3 className="font-semibold text-lg">{product.title}</h3>
-          <p className="text-sm text-gray-600 line-clamp-2">
-            {product.description}
-          </p>
-          <p className="text-xl font-bold mt-2">
-            Rs. {minPrice.toLocaleString()}
-          </p>
-          <div className="flex gap-2 mt-2">
-            {product.variants.slice(0, 4).map(v => (
-              <div
-                key={v.id}
-                className="w-6 h-6 rounded-full border"
-                style={{ backgroundColor: v.color.toLowerCase() }}
-              />
-            ))}
+        <CardContent className="p-5 flex flex-col flex-1 justify-between gap-4">
+          <div className="space-y-2">
+            <h3 className="font-bold text-xl text-white tracking-tight group-hover:text-primary transition-colors line-clamp-1">{product.title}</h3>
+            <p className="text-sm text-teal-100/50 line-clamp-2 font-medium leading-relaxed min-h-[40px]">
+              {product.description}
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-2xl font-black text-white">
+              Rs. {minPrice.toLocaleString()}
+            </p>
+            <div className="flex gap-2">
+              {product.variants.slice(0, 4).map(v => (
+                <div
+                  key={v.id}
+                  className="w-5 h-5 rounded-full border border-white/10 shadow-inner"
+                  style={{ backgroundColor: v.color.toLowerCase() }}
+                />
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
