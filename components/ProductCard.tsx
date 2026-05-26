@@ -5,6 +5,10 @@ import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import type { Product } from '@/types';
 
+function getSwatchColor(color: string, colorHex?: string | null) {
+  return colorHex || color.toLowerCase().replace(/_/g, '');
+}
+
 export function ProductCard({ product }: { product: Product }) {
   // Get primary image from first variant
   const primaryImage = product.variants[0]?.images.find(img => img.isPrimary) 
@@ -44,7 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
                 <div
                   key={v.id}
                   className="w-5 h-5 rounded-full border border-white/10 shadow-inner"
-                  style={{ backgroundColor: v.color.toLowerCase() }}
+                  style={{ backgroundColor: getSwatchColor(v.color, v.colorHex) }}
                 />
               ))}
             </div>

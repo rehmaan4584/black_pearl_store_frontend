@@ -6,6 +6,10 @@ import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import type { Product } from '@/types';
 
+function getSwatchColor(color: string, colorHex?: string | null) {
+  return colorHex || color.toLowerCase().replace(/_/g, '');
+}
+
 export function ProductInfo({ product }: { product: Product }) {
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [quantity, setQuantity] = useState(1);
@@ -94,7 +98,12 @@ export function ProductInfo({ product }: { product: Product }) {
                   ? 'ring-primary scale-110' 
                   : 'ring-transparent hover:ring-white/20'
               }`}
-              style={{ backgroundColor: color.toLowerCase().replace('_', '') }}
+              style={{
+                backgroundColor: getSwatchColor(
+                  color,
+                  product.variants.find((variant) => variant.color === color)?.colorHex
+                ),
+              }}
               title={color}
             >
               <span className={`absolute inset-0 rounded-full border-2 border-white/20 pointer-events-none group-hover:scale-110 transition-transform`} />

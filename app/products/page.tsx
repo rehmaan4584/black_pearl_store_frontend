@@ -20,13 +20,13 @@ export default async function ProductsPage({
   
   if (searchParams.gender) {
     filteredProducts = filteredProducts.filter(
-      (p:any) => p.gender === searchParams.gender
+      (product) => product.gender === searchParams.gender
     );
   }
   
   if (searchParams.type) {
     filteredProducts = filteredProducts.filter(
-      (p:any) => p.type === searchParams.type
+      (product) => product.type === searchParams.type
     );
   }
 
@@ -45,7 +45,7 @@ export default async function ProductsPage({
       {/* Products Grid */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product:any) => (
+          {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

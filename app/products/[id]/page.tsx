@@ -17,7 +17,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   
   try {
     product = await getProduct(id);
-  } catch (error) {
+  } catch {
     notFound();
   }
 

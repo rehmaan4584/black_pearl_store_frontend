@@ -12,7 +12,7 @@ export default async function HomePage() {
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="text-center py-24 glass rounded-3xl mb-16 relative overflow-hidden border-white/5">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-b from-primary/10 to-transparent pointer-events-none" />
         <h1 className="text-6xl font-extrabold mb-6 text-white tracking-tight relative z-10">
           Welcome to Black Pearl
         </h1>
@@ -42,7 +42,7 @@ export default async function HomePage() {
       <section>
         <h2 className="text-3xl font-bold mb-6">Featured Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {featuredProducts.map((product:any) => (
+          {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
