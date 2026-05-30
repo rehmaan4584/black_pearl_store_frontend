@@ -59,3 +59,24 @@ export interface Cart {
   totalQuantity: number;
   totalAmount: number;
 }
+
+export interface Order {
+  id: number;
+  status: string;
+  totalAmount: number;
+  items: {
+    id: number;
+    productVariantId: number;
+    quantity: number;
+    price: number;
+    lineTotal: number;
+    product: {
+      id: number;
+      title: string;
+    };
+    variant: {
+      size: string;
+      color: string;
+    };
+  }[];
+}

@@ -8,12 +8,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getStoredToken } from '@/lib/auth-token';
 import { getCart, removeCartItem, updateCartItem } from '@/lib/cart-api';
+import { createOrderFromCart } from '@/lib/order-api';
 import type { Cart } from '@/types';
 
 export default function CartPage() {
   const router = useRouter();
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
+  const [checkingOut, setCheckingOut] = useState(false);
   const [message, setMessage] = useState('');
 
   async function loadCart() {
@@ -47,6 +49,19 @@ export default function CartPage() {
   async function handleRemove(cartItemId: number) {
     const updatedCart = await removeCartItem(cartItemId);
     setCart(updatedCart);
+  }
+
+  async function handleCheckout() {
+    try {
+      setCheckingOut(true);
+      setMessage('');
+      const order = await createOrderFromCart();
+      router.push(`/orders/success?orderId=${order.id}`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Could not create order');
+    } finally {
+      setCheckingOut(false);
+    }
   }
 
   if (loading) {
@@ -153,8 +168,13 @@ export default function CartPage() {
               <span>Total</span>
               <span>Rs. {cart.totalAmount.toLocaleString()}</span>
             </div>
-            <Button className="h-12 w-full font-bold" disabled>
-              Checkout Coming Next
+            {message && <p className="text-sm text-destructive">{message}</p>}
+            <Button
+              className="h-12 w-full font-bold"
+              onClick={handleCheckout}
+              disabled={checkingOut}
+            >
+              {checkingOut ? 'Creating Order...' : 'Create Pending Order'}
             </Button>
           </CardContent>
         </Card>
