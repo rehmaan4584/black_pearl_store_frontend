@@ -27,8 +27,7 @@ export default async function OrderSuccessPage({
           </div>
 
           <p className="text-teal-100/60">
-            Your order has been created and inventory has been reserved. Stripe
-            payment will be connected in the next phase.
+            Your order has been created and inventory has been reserved.
           </p>
 
           {orderId && (

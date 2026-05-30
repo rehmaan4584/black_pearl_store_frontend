@@ -7,7 +7,12 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getStoredToken } from '@/lib/auth-token';
-import { getCart, removeCartItem, updateCartItem } from '@/lib/cart-api';
+import {
+  getCart,
+  notifyCartChanged,
+  removeCartItem,
+  updateCartItem,
+} from '@/lib/cart-api';
 import { createCheckoutSession } from '@/lib/checkout-api';
 import type { Cart } from '@/types';
 
@@ -44,11 +49,13 @@ export default function CartPage() {
     if (quantity < 1) return;
     const updatedCart = await updateCartItem(cartItemId, quantity);
     setCart(updatedCart);
+    notifyCartChanged();
   }
 
   async function handleRemove(cartItemId: number) {
     const updatedCart = await removeCartItem(cartItemId);
     setCart(updatedCart);
+    notifyCartChanged();
   }
 
   async function handleCheckout() {

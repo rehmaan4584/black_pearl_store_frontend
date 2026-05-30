@@ -22,8 +22,8 @@ export default async function CheckoutSuccessPage({
           </p>
           <h1 className="text-4xl font-black text-white">Thank You</h1>
           <p className="text-teal-100/60">
-            Stripe has accepted your payment. The webhook will mark your order
-            as paid.
+            Your payment was submitted successfully. We&apos;re preparing your
+            order now.
           </p>
           {orderId && (
             <p className="rounded-xl border border-white/10 p-4 text-sm text-teal-100/70">

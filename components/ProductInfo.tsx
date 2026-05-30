@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import type { Product } from '@/types';
-import { addCartItem } from '@/lib/cart-api';
+import { addCartItem, notifyCartChanged } from '@/lib/cart-api';
 import { getStoredToken } from '@/lib/auth-token';
 
 function getSwatchColor(color: string, colorHex?: string | null) {
@@ -53,6 +53,7 @@ export function ProductInfo({ product }: { product: Product }) {
         productVariantId: selectedVariant.id,
         quantity,
       });
+      notifyCartChanged();
       setMessage('Added to cart successfully.');
       router.refresh();
     } catch (error) {
