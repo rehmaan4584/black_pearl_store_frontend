@@ -29,3 +29,33 @@ export interface ProductVariantImage {
   publicId: string;
   isPrimary: boolean;
 }
+
+export interface CartItem {
+  id: number;
+  productVariantId: number;
+  quantity: number;
+  unitPrice: number;
+  lineTotal: number;
+  product: {
+    id: number;
+    title: string;
+    brand: string;
+  };
+  variant: {
+    id: number;
+    sku: string;
+    size: string;
+    color: string;
+    colorHex: string;
+    availableQuantity: number;
+    imageUrl: string | null;
+  };
+}
+
+export interface Cart {
+  id: number;
+  userId: number;
+  items: CartItem[];
+  totalQuantity: number;
+  totalAmount: number;
+}

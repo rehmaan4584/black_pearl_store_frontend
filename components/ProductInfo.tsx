@@ -2,17 +2,23 @@
 'use client'
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import type { Product } from '@/types';
+import { addCartItem } from '@/lib/cart-api';
+import { getStoredToken } from '@/lib/auth-token';
 
 function getSwatchColor(color: string, colorHex?: string | null) {
   return colorHex || color.toLowerCase().replace(/_/g, '');
 }
 
 export function ProductInfo({ product }: { product: Product }) {
+  const router = useRouter();
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState('');
+  const [isAdding, setIsAdding] = useState(false);
 
   // Get unique sizes and colors
   const sizes = [...new Set(product.variants.map(v => v.size))];
@@ -34,13 +40,26 @@ export function ProductInfo({ product }: { product: Product }) {
     if (variant) setSelectedVariant(variant);
   };
 
-  const handleAddToCart = () => {
-    console.log('Add to cart:', {
-      variant: selectedVariant,
-      quantity
-    });
-    // TODO: Implement cart logic
-    alert(`Added ${quantity} item(s) to cart!`);
+  const handleAddToCart = async () => {
+    if (!getStoredToken()) {
+      router.push('/login');
+      return;
+    }
+
+    try {
+      setIsAdding(true);
+      setMessage('');
+      await addCartItem({
+        productVariantId: selectedVariant.id,
+        quantity,
+      });
+      setMessage('Added to cart successfully.');
+      router.refresh();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Could not add to cart');
+    } finally {
+      setIsAdding(false);
+    }
   };
 
   return (
@@ -165,10 +184,19 @@ export function ProductInfo({ product }: { product: Product }) {
           size="lg"
           className="w-full h-16 text-lg font-black uppercase tracking-widest cyan-glow hover:scale-[1.01] transition-transform"
           onClick={handleAddToCart}
-          disabled={!selectedVariant.inventory || selectedVariant.inventory.quantity === 0}
+          disabled={
+            isAdding ||
+            !selectedVariant.inventory ||
+            selectedVariant.inventory.quantity === 0
+          }
         >
-          Add to Cart
+          {isAdding ? 'Adding...' : 'Add to Cart'}
         </Button>
+        {message && (
+          <p className="text-center text-sm font-semibold text-teal-100/70">
+            {message}
+          </p>
+        )}
         <p className="text-center text-[10px] text-teal-100/20 font-bold uppercase tracking-[0.2em]">
           SKU: {selectedVariant.sku} • Secure Futuristic Checkout
         </p>

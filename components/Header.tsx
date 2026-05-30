@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Button } from './ui/button';
 import { BlackPearlLogo } from './BlackPearlLogo';
+import { HeaderAuthActions } from './HeaderAuthActions';
 
 export function Header() {
   return (
@@ -17,10 +17,7 @@ export function Header() {
           <Link href="/products?type=SHIRTS">Shirts</Link>
         </nav>
         
-        <div className="flex gap-4">
-          <Button variant="ghost">Cart (0)</Button>
-          <Button>Login</Button>
-        </div>
+        <HeaderAuthActions />
       </div>
     </header>
   );
