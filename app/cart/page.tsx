@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getStoredToken } from '@/lib/auth-token';
 import { getCart, removeCartItem, updateCartItem } from '@/lib/cart-api';
-import { createOrderFromCart } from '@/lib/order-api';
+import { createCheckoutSession } from '@/lib/checkout-api';
 import type { Cart } from '@/types';
 
 export default function CartPage() {
@@ -55,8 +55,11 @@ export default function CartPage() {
     try {
       setCheckingOut(true);
       setMessage('');
-      const order = await createOrderFromCart();
-      router.push(`/orders/success?orderId=${order.id}`);
+      const session = await createCheckoutSession();
+      if (!session.url) {
+        throw new Error('Stripe checkout session URL missing');
+      }
+      window.location.href = session.url;
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Could not create order');
     } finally {
@@ -174,7 +177,7 @@ export default function CartPage() {
               onClick={handleCheckout}
               disabled={checkingOut}
             >
-              {checkingOut ? 'Creating Order...' : 'Create Pending Order'}
+              {checkingOut ? 'Redirecting...' : 'Pay with Stripe'}
             </Button>
           </CardContent>
         </Card>
