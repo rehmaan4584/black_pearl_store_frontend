@@ -42,10 +42,10 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
   }
 
   return (
-    <Card className="glass mx-auto max-w-md border-white/5">
-      <CardContent className="p-8">
-        <div className="mb-8 space-y-2 text-center">
-          <h1 className="text-3xl font-black text-white">
+    <Card className="glass mx-auto w-full max-w-md border-white/5">
+      <CardContent className="p-6 sm:p-8">
+        <div className="mb-6 space-y-2 text-center sm:mb-8">
+          <h1 className="text-2xl font-black text-white sm:text-3xl">
             {isRegister ? 'Create Account' : 'Welcome Back'}
           </h1>
           <p className="text-sm text-teal-100/50">

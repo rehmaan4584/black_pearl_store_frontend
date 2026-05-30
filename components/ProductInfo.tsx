@@ -75,11 +75,13 @@ export function ProductInfo({ product }: { product: Product }) {
             {product.gender}
           </Badge>
         </div>
-        <h1 className="text-4xl lg:text-5xl font-black text-white tracking-tight mb-2 uppercase">{product.title}</h1>
+        <h1 className="mb-2 text-2xl font-black uppercase tracking-tight text-white sm:text-4xl lg:text-5xl">
+          {product.title}
+        </h1>
         
         {/* Price */}
-        <div className="flex items-baseline gap-4 mt-6">
-          <p className="text-4xl font-black text-primary cyan-glow-text">
+        <div className="mt-4 flex items-baseline gap-4 sm:mt-6">
+          <p className="text-3xl font-black text-primary cyan-glow-text sm:text-4xl">
             Rs. {selectedVariant.price.toLocaleString()}
           </p>
         </div>
@@ -93,7 +95,7 @@ export function ProductInfo({ product }: { product: Product }) {
             <button
               key={size}
               onClick={() => handleSizeChange(size)}
-              className={`h-12 w-16 rounded-xl border-2 transition-all duration-300 font-bold text-sm ${
+              className={`h-11 min-w-12 rounded-xl border-2 px-2 text-sm font-bold transition-all duration-300 sm:h-12 sm:w-16 ${
                 selectedVariant.size === size 
                   ? 'bg-primary text-black border-primary cyan-glow scale-110' 
                   : 'glass border-white/5 text-white/70 hover:border-white/20'

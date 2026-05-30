@@ -14,19 +14,19 @@ export default async function OrderSuccessPage({
   const { orderId } = await searchParams;
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <Card className="glass mx-auto max-w-xl border-white/5">
-        <CardContent className="space-y-6 p-8 text-center">
+    <div className="container mx-auto px-4 py-12 sm:py-16">
+      <Card className="glass mx-auto w-full max-w-xl border-white/5">
+        <CardContent className="space-y-5 p-6 text-center sm:space-y-6 sm:p-8">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-primary">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary sm:text-sm">
               Pending Order Created
             </p>
-            <h1 className="mt-3 text-4xl font-black text-white">
+            <h1 className="mt-3 text-3xl font-black text-white sm:text-4xl">
               Order Reserved
             </h1>
           </div>
 
-          <p className="text-teal-100/60">
+          <p className="text-sm text-teal-100/60 sm:text-base">
             Your order has been created and inventory has been reserved.
           </p>
 
@@ -36,7 +36,7 @@ export default async function OrderSuccessPage({
             </p>
           )}
 
-          <div className="flex justify-center gap-3">
+          <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild>
               <Link href="/products">Continue Shopping</Link>
             </Button>

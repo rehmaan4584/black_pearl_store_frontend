@@ -22,15 +22,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-7xl">
-      <div className="flex flex-col lg:flex-row gap-12 items-start">
+    <div className="container mx-auto max-w-7xl px-4 py-6 sm:py-12">
+      <div className="flex flex-col items-start gap-8 lg:flex-row lg:gap-12">
         {/* Left: Images */}
-        <div className="w-full lg:w-3/5 sticky top-24">
+        <div className="w-full lg:sticky lg:top-24 lg:w-3/5">
           <ProductImages product={product} />
         </div>
 
         {/* Right: Info */}
-        <div className="w-full lg:w-2/5 glass p-8 rounded-3xl border-white/5 space-y-8">
+        <div className="w-full space-y-6 rounded-2xl border-white/5 glass p-5 sm:space-y-8 sm:rounded-3xl sm:p-8 lg:w-2/5">
           <ProductInfo product={product} />
           
           <div className="pt-8 border-t border-white/5">

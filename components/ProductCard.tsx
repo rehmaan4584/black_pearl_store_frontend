@@ -19,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/products/${product.id}`} className="group h-full">
       <Card className="glass border-white/5 overflow-hidden transition-all duration-300 hover:scale-[1.02] cyan-glow-hover h-full flex flex-col">
-        <div className="relative h-72 w-full shrink-0 overflow-hidden">
+        <div className="relative h-44 w-full shrink-0 overflow-hidden sm:h-56 md:h-72">
           <Image
             src={primaryImage?.url || '/placeholder.png'}
             alt={product.title}
@@ -31,16 +31,18 @@ export function ProductCard({ product }: { product: Product }) {
           </Badge>
         </div>
         
-        <CardContent className="p-5 flex flex-col flex-1 justify-between gap-4">
-          <div className="space-y-2">
-            <h3 className="font-bold text-xl text-white tracking-tight group-hover:text-primary transition-colors line-clamp-1">{product.title}</h3>
-            <p className="text-sm text-teal-100/50 line-clamp-2 font-medium leading-relaxed min-h-[40px]">
+        <CardContent className="flex flex-1 flex-col justify-between gap-3 p-3 sm:gap-4 sm:p-5">
+          <div className="space-y-1 sm:space-y-2">
+            <h3 className="line-clamp-1 text-base font-bold tracking-tight text-white transition-colors group-hover:text-primary sm:text-xl">
+              {product.title}
+            </h3>
+            <p className="line-clamp-2 min-h-0 text-xs font-medium leading-relaxed text-teal-100/50 sm:min-h-[40px] sm:text-sm">
               {product.description}
             </p>
           </div>
 
           <div className="space-y-4">
-            <p className="text-2xl font-black text-white">
+            <p className="text-lg font-black text-white sm:text-2xl">
               Rs. {minPrice.toLocaleString()}
             </p>
             <div className="flex gap-2">

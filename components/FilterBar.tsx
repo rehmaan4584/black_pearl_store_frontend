@@ -43,12 +43,12 @@ export function FilterBar() {
   };
 
   return (
-    <div className="flex gap-6 mb-12 flex-wrap items-end bg-white/2 p-6 rounded-3xl border border-white/5 glass">
+    <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-white/5 bg-white/2 p-4 glass sm:mb-12 sm:flex-row sm:flex-wrap sm:items-end sm:gap-6 sm:rounded-3xl sm:p-6">
       {/* Gender Filter */}
-      <div className="space-y-2">
-        <label className="text-xs font-bold uppercase tracking-wider text-teal-100/60 ml-1">Gender</label>
+      <div className="w-full space-y-2 sm:w-auto">
+        <label className="ml-1 text-xs font-bold uppercase tracking-wider text-teal-100/60">Gender</label>
         <Select value={currentGender || 'all'} onValueChange={handleGenderChange}>
-          <SelectTrigger className="w-[180px] h-12 glass border-white/10 hover:border-primary/50 transition-colors uppercase tracking-widest text-xs font-bold">
+          <SelectTrigger className="h-11 w-full glass border-white/10 text-xs font-bold uppercase tracking-widest transition-colors hover:border-primary/50 sm:h-12 sm:w-[180px]">
             <SelectValue placeholder="All Genders" />
           </SelectTrigger>
           <SelectContent position="popper" sideOffset={8} className="glass-darker border-white/10 min-w-[180px]">
@@ -61,10 +61,10 @@ export function FilterBar() {
       </div>
 
       {/* Type Filter */}
-      <div className="space-y-2">
-        <label className="text-xs font-bold uppercase tracking-wider text-teal-100/60 ml-1">Category</label>
+      <div className="w-full space-y-2 sm:w-auto">
+        <label className="ml-1 text-xs font-bold uppercase tracking-wider text-teal-100/60">Category</label>
         <Select value={currentType || 'all'} onValueChange={handleTypeChange}>
-          <SelectTrigger className="w-[180px] h-12 glass border-white/10 hover:border-primary/50 transition-colors uppercase tracking-widest text-xs font-bold">
+          <SelectTrigger className="h-11 w-full glass border-white/10 text-xs font-bold uppercase tracking-widest transition-colors hover:border-primary/50 sm:h-12 sm:w-[180px]">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent position="popper" sideOffset={8} className="glass-darker border-white/10 min-w-[180px]">
@@ -79,7 +79,7 @@ export function FilterBar() {
 
       {/* Clear Filters */}
       {(currentGender || currentType) && (
-        <Button variant="ghost" onClick={clearFilters} className="h-12 px-6 text-destructive hover:bg-destructive/10 font-bold uppercase tracking-widest text-xs">
+        <Button variant="ghost" onClick={clearFilters} className="h-11 w-full px-6 text-xs font-bold uppercase tracking-widest text-destructive hover:bg-destructive/10 sm:h-12 sm:w-auto">
           Clear Filters
         </Button>
       )}

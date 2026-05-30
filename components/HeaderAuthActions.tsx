@@ -3,7 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ShoppingBag } from 'lucide-react';
+import { LogOut, ShoppingBag } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   clearStoredToken,
@@ -66,8 +66,8 @@ export function HeaderAuthActions() {
   }
 
   return (
-    <div className="flex items-center gap-3">
-      <Button variant="ghost" asChild className="relative gap-2">
+    <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+      <Button variant="ghost" size="icon" asChild className="relative sm:size-auto sm:px-3">
         <Link href="/cart" aria-label={`Cart with ${cartCount} items`}>
           <ShoppingBag className="size-4" />
           <span className="hidden sm:inline">Cart</span>
@@ -81,13 +81,24 @@ export function HeaderAuthActions() {
       {isLoggedIn ? (
         <>
           <div
-            className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-primary/15 text-xs font-black text-primary"
+            className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-primary/15 text-xs font-black text-primary sm:size-10"
             title={email}
             aria-label={email ? `Logged in as ${email}` : 'Logged in user'}
           >
             {email ? getAvatarLabel(email) : 'BP'}
           </div>
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="sm:hidden"
+            onClick={handleLogout}
+            aria-label="Sign out"
+          >
+            <LogOut className="size-4" />
+          </Button>
+          <Button onClick={handleLogout} className="hidden sm:inline-flex">
+            Logout
+          </Button>
         </>
       ) : (
         <Button asChild>

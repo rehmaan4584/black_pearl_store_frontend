@@ -9,29 +9,31 @@ export default async function HomePage() {
   const featuredProducts = products.slice(0, 8); // First 8 products
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
       {/* Hero Section */}
-      <section className="text-center py-24 glass rounded-3xl mb-16 relative overflow-hidden border-white/5">
+      <section className="relative mb-10 overflow-hidden rounded-2xl border-white/5 glass py-12 text-center sm:mb-16 sm:rounded-3xl sm:py-20 lg:py-24">
         <div className="absolute inset-0 bg-linear-to-b from-primary/10 to-transparent pointer-events-none" />
-        <h1 className="text-6xl font-extrabold mb-6 text-white tracking-tight relative z-10">
+        <h1 className="relative z-10 mb-4 px-2 text-3xl font-extrabold tracking-tight text-white sm:mb-6 sm:text-5xl lg:text-6xl">
           Welcome to Black Pearl
         </h1>
-        <p className="text-2xl text-teal-100/60 mb-10 max-w-2xl mx-auto relative z-10">
+        <p className="relative z-10 mx-auto mb-8 max-w-2xl px-4 text-base text-teal-100/60 sm:mb-10 sm:text-xl lg:text-2xl">
           Premium Fashion for Men & Women
         </p>
         <Link href="/products" className="relative z-10">
-          <Button size="lg" className="cyan-glow font-bold h-14 px-10 text-lg">Shop Now</Button>
+          <Button size="lg" className="cyan-glow h-12 px-8 text-base font-bold sm:h-14 sm:px-10 sm:text-lg">
+            Shop Now
+          </Button>
         </Link>
       </section>
 
       {/* Categories */}
-      <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6">Shop by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="mb-10 sm:mb-12">
+        <h2 className="mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl">Shop by Category</h2>
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-4">
           {['JEANS', 'SHORTS', 'SHIRTS', 'KNICKERS'].map(type => (
             <Link key={type} href={`/products?type=${type}`}>
-              <div className="h-40 glass rounded-2xl flex items-center justify-center hover:bg-white/5 transition-all duration-300 cyan-glow-hover group">
-                <span className="text-xl font-bold tracking-widest text-white group-hover:text-primary transition-colors">{type}</span>
+              <div className="flex h-28 items-center justify-center rounded-2xl glass transition-all duration-300 cyan-glow-hover group hover:bg-white/5 sm:h-40">
+                <span className="text-sm font-bold tracking-widest text-white transition-colors group-hover:text-primary sm:text-xl">{type}</span>
               </div>
             </Link>
           ))}
@@ -40,8 +42,8 @@ export default async function HomePage() {
 
       {/* Featured Products */}
       <section>
-        <h2 className="text-3xl font-bold mb-6">Featured Products</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <h2 className="mb-4 text-2xl font-bold sm:mb-6 sm:text-3xl">Featured Products</h2>
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
           {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

@@ -12,7 +12,7 @@ export default async function CheckoutCancelPage({
   const { orderId } = await searchParams;
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-12 sm:py-16">
       <CheckoutCancelClient orderId={orderId} />
     </div>
   );
