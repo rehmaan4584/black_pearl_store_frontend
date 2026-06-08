@@ -37,11 +37,16 @@ export default async function OrderSuccessPage({
           )}
 
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
-            <Button asChild>
-              <Link href="/products">Continue Shopping</Link>
+            {orderId && (
+              <Button asChild>
+                <Link href={`/orders/${orderId}`}>View Order</Link>
+              </Button>
+            )}
+            <Button variant="outline" asChild>
+              <Link href="/orders">My Orders</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/cart">Back to Cart</Link>
+              <Link href="/products">Continue Shopping</Link>
             </Button>
           </div>
         </CardContent>

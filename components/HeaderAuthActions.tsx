@@ -3,7 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogOut, ShoppingBag } from 'lucide-react';
+import { ClipboardList, LogOut, ShoppingBag } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   clearStoredToken,
@@ -78,6 +78,14 @@ export function HeaderAuthActions() {
           )}
         </Link>
       </Button>
+      {isLoggedIn && (
+        <Button variant="ghost" size="icon" asChild className="sm:size-auto sm:px-3">
+          <Link href="/orders" aria-label="My orders">
+            <ClipboardList className="size-4" />
+            <span className="hidden sm:inline">Orders</span>
+          </Link>
+        </Button>
+      )}
       {isLoggedIn ? (
         <>
           <div
